@@ -10,6 +10,14 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const {
+  title = '',
+  description = '',
+  heroImage = null,
+  pubDate = null,
+  current = 'blog'  
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -87,7 +95,8 @@ const posts = (await getCollection('blog')).sort(
 		</style>
 	</head>
 	<body>
-		<Header />
+		
+		<Header current={current} />
 		<main>
 			<section>
 				<ul>
